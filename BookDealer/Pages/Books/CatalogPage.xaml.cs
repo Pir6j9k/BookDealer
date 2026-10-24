@@ -51,16 +51,15 @@ namespace BookDealer.Pages.Books
 
             try
             {
-                IQueryable<Book> query = Core.DB.Books.AsNoTracking()
-                    .Where(b => !b.IsFrozen && !b.IsFree);
-
+                IQueryable<Book> query = Core.DB.Books.AsNoTracking();
 
                 if (TryParsePrice(PriceFromTextBox.Text, out decimal priceFrom))
                     query = query.Where(b => b.Price >= priceFrom);
 
                 if (TryParsePrice(PriceToTextBox.Text, out decimal priceTo))
                     query = query.Where(b => b.Price <= priceTo);
-
+                if (!string.IsNullOrEmpty(_searchText))
+                    query = query.Where(b => b.Title.Contains(_searchText));
                 if (selectedIds.Count > 0)
                     query = query.Where(b => b.Genres.Any(g => selectedIds.Contains(g.GenreID)));
 
@@ -90,6 +89,18 @@ namespace BookDealer.Pages.Books
         private void ShowBooks(List<Book> books)
         {
             BookLb.ItemsSource = books;
+        }
+
+        private void ResetFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PriceFromTextBox.Text = "";
+            PriceToTextBox.Text = "";
+            foreach (var genre in _genres)
+                genre.IsSelected = false;
+            GenresList.ItemsSource = null;
+            GenresList.ItemsSource = _genres;
+            SortComboBox.SelectedItem = null;
+            LoadBooks();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -205,6 +216,25 @@ namespace BookDealer.Pages.Books
         private static bool TryParsePrice(string text, out decimal value)
         {
             return decimal.TryParse(text.Trim().Replace('.', ','), NumberStyles.Number, CultureInfo.GetCultureInfo("ru-RU"), out value);
+        }
+
+        private void BookLb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var book = BookLb.SelectedItem as Book;
+            if(book == null) return;
+            BookLb.SelectedItem = null;
+            NavigationService.Navigate(new Pages.Books.BookCardPage());
+        }
+
+        private string _searchText = "";
+
+        public void ApplySearch(string text)
+        {
+            text = text?.Trim() ?? "";
+            if (text == _searchText) return;  
+
+            _searchText = text;
+            LoadBooks();
         }
     }
 }

@@ -29,7 +29,7 @@
         </Border>
 
         <TextBlock Text="Жанры" Style="{DynamicResource SideText}"/>
-        <ListBox x:Name="GenresLb" SelectionMode="Multiple" DisplayMemberPath="GenreName" Height="200" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        <ListBox x:Name="GenresLb" Style="{DynamicResource GenreList}" DisplayMemberPath="GenreName" />
 
         <StackPanel Orientation="Horizontal" Style="{DynamicResource Center}">
             <Button Content="Отмена" Style="{DynamicResource Button4}" Click="CancelBtn_Click"/>

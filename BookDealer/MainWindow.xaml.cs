@@ -53,6 +53,9 @@ namespace BookDealer
                 LogoPanel.Visibility= Visibility.Visible;
                 PageTitleText.Visibility= Visibility.Collapsed;
             }
+            bool isCatalog = e.Content is Pages.Books.CatalogPage;
+            SearchBorder.Visibility = isCatalog ? Visibility.Visible : Visibility.Collapsed;
+            SearchTb.Text = "";
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -88,6 +91,32 @@ namespace BookDealer
             }
             else 
                 MainFrame.Navigate(new Pages.Profile.ProfilePage());
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show( "Выйти из профиля?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result != MessageBoxResult.Yes)
+                return;
+
+            Core.CurrentUser = null;
+            AuthWindow auth = new AuthWindow();
+            Application.Current.MainWindow = auth;      
+            auth.Show();                               
+
+            Core.MainWindow.Close();
+        }
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (MessageBox.Show("Закрыть приложение?", "Выход", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                e.Cancel = true;
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (MainFrame?.Content is Pages.Books.CatalogPage catalog)
+                catalog.ApplySearch(SearchTb.Text);
         }
     }
 }

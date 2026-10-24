@@ -9,9 +9,8 @@
     
     <StackPanel Style="{DynamicResource Center}">
         <StackPanel Style="{DynamicResource Center}" Orientation="Horizontal">
-            
             <TextBlock Text="Добавить" Style="{DynamicResource TitleText}"/>
-            <TextBlock Text=" пользователя" Style="{DynamicResource Title1Text}"/>
+            <TextBlock Text="пользователя" Style="{DynamicResource Title1Text}"/>
         </StackPanel>
         <StackPanel>
             <TextBlock Text="Логин" Style="{DynamicResource SideText}"/>
@@ -49,5 +48,7 @@
             <Button Content="Отмена" Style="{DynamicResource Button4}" Click="CancelBtn_Click"/>
             <Button Content="Сохранить" Click="SaveBtn_Click"/>
         </StackPanel>
+        <Button x:Name="ThemeChangeBtn" Content="☯︎" ToolTip="Смена темы" Style="{DynamicResource Button6}" Click="ThemeChangeBtn_Click" />
+
     </StackPanel>
 </Window>

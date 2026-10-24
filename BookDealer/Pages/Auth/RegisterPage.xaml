@@ -22,32 +22,32 @@
         <StackPanel Grid.Row="1">
             <TextBlock Text="Имя" Style="{DynamicResource SideText}"/>
             <Border Style="{DynamicResource Border}">
-                <TextBox x:Name="NameTbx"/>
+                <TextBox x:Name="NameTbx" ToolTip="Введите имя"/>
             </Border>
 
             <TextBlock Text="Почта" Style="{DynamicResource SideText}"/>
             <Border Style="{DynamicResource Border}">
-                <TextBox x:Name="MailTbx"/>
+                <TextBox x:Name="MailTbx" ToolTip="Введите почту"/>
             </Border>
 
             <TextBlock Text="Логин" Style="{DynamicResource SideText}"/>
             <Border Style="{DynamicResource Border}">
-                <TextBox x:Name="LoginTbx"/>
+                <TextBox x:Name="LoginTbx" ToolTip="Введите логин"/>
             </Border>
 
             <TextBlock Text="Пароль" Style="{DynamicResource SideText}" />
             <Border Style="{DynamicResource Border}">
-                <PasswordBox x:Name="PassB"/>
+                <PasswordBox x:Name="PassB" ToolTip="Введите пароль"/>
             </Border>
 
             <TextBlock Text="Повторите пароль" Style="{DynamicResource SideText}"/>
             <Border Style="{DynamicResource Border}">
-                <PasswordBox x:Name="RepPassB" />
+                <PasswordBox x:Name="RepPassB" ToolTip="Пароли должны совпадать"/>
             </Border>
 
         </StackPanel>
         <Button Grid.Row="2" x:Name="CreateAccB" Content="Создать аккаунт" Click="CreateAccB_Click"/>
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Style="{DynamicResource Center}">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Style="{DynamicResource Center}" ToolTip="Создание аккаунта">
             <TextBlock>
             Есть аккаунта?
             <Hyperlink NavigateUri="AuthPage.xaml">Войти</Hyperlink>

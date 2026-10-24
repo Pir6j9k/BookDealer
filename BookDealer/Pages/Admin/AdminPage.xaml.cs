@@ -96,7 +96,7 @@ namespace BookDealer.Pages.Admin
             if (editedUser == null)
             {
                 User user = UserGd.SelectedItem as User;
-                if(user == null)
+                if (user == null)
                 {
                     MessageBox.Show("Выберите пользователя!");
                     return;
@@ -106,13 +106,14 @@ namespace BookDealer.Pages.Admin
                 ChangeUserBtn.Content = "💾 Сохранить";
                 AddUserBtn.IsEnabled = false;
                 DeleteUserBtn.IsEnabled = false;
+                ChangePasswordBtn.IsEnabled = false;
                 UserSearchTb.IsEnabled = false;
-
                 return;
             }
+
             UserGd.CommitEdit(DataGridEditingUnit.Row, true);
-            if(string.IsNullOrWhiteSpace(editedUser.Login) || 
-                string.IsNullOrWhiteSpace (editedUser.DisplayName) || 
+            if (string.IsNullOrWhiteSpace(editedUser.Login) ||
+                string.IsNullOrWhiteSpace(editedUser.DisplayName) ||
                 editedUser.Role == null)
             {
                 MessageBox.Show("Логин, имя и роль не могут быть пустыми!");
@@ -127,16 +128,35 @@ namespace BookDealer.Pages.Admin
                 ChangeUserBtn.Content = "🖊 Изменить";
                 AddUserBtn.IsEnabled = true;
                 DeleteUserBtn.IsEnabled = true;
+                ChangePasswordBtn.IsEnabled = true;
                 UserSearchTb.IsEnabled = true;
 
                 LoadData();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Exception inner = ex;
                 while (inner.InnerException != null)
                     inner = inner.InnerException;
                 MessageBox.Show("Ошибка сохранения: " + inner.Message);
+            }
+        }
+
+        private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            User user = UserGd.SelectedItem as User;
+            if (user == null)
+            {
+                MessageBox.Show("Выберите пользователя!");
+                return;
+            }
+
+            ChangePasswordWindow win = new ChangePasswordWindow(user);
+            win.Owner = Window.GetWindow(this);
+            if (win.ShowDialog() == true)
+            {
+                MessageBox.Show("Пароль изменён!");
+                LoadUsers();
             }
         }
         private void AddUserBtn_Click(object sender, RoutedEventArgs e)
@@ -282,9 +302,7 @@ namespace BookDealer.Pages.Admin
         private void RefreshPaymentsChart()
         {
             var typeItem = PaymentsChartTypeComboBox.SelectedItem as ComboBoxItem;
-            PaymentsReport.DrawChart(_paymentsChart,
-                                     PaymentsUserComboBox.SelectedItem as User,
-                                     typeItem?.Tag as string);
+            PaymentsReport.DrawChart(_paymentsChart, PaymentsUserComboBox.SelectedItem as User, typeItem?.Tag as string);
         }
 
         private void PaymentsUserComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -9,6 +9,6 @@
       Title="Избранное">
 
     <Grid>
-        
+        <TextBlock Text="У программиста лапки.😿" Style="{DynamicResource Title1Text}" TextAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

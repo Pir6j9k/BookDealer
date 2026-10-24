@@ -71,11 +71,12 @@
                         <Border Style="{DynamicResource Border}">
                             <TextBox x:Name="UserSearchTb" ToolTip="Поиск" TextChanged="UserSearchTb_TextChanged"/>
                         </Border>
-                        <Button x:Name="AddUserBtn" Content="+ Добавить" Click="AddUserBtn_Click"/>
-                        <Button x:Name="ChangeUserBtn" Content="🖊 Изменить" Style="{DynamicResource Button3}" Click="ChangeUserBtn_Click"/>
-                        <Button x:Name="DeleteUserBtn" Content="🗑️ Удалить" Style="{DynamicResource Button4}" Click="DeleteUserBtn_Click"/>
+                        <Button x:Name="AddUserBtn" ToolTip="Добавить пользователя" Content="+ Добавить" Click="AddUserBtn_Click"/>
+                        <Button x:Name="ChangeUserBtn" ToolTip="Изменить выбранного пользователя" Content="🖊 Изменить" Style="{DynamicResource Button3}" Click="ChangeUserBtn_Click"/>
+                        <Button x:Name="ChangePasswordBtn" ToolTip="Сменить пароль выбранного пользователя" Content="🔑 Пароль" Style="{DynamicResource Button3}" Click="ChangePasswordBtn_Click"/>
+                        <Button x:Name="DeleteUserBtn" ToolTip="Удалить выбранного пользователя" Content="🗑️ Удалить" Style="{DynamicResource Button4}" Click="DeleteUserBtn_Click"/>
                     </StackPanel>
-                    <DataGrid x:Name="UserGd" Grid.Row="1" BeginningEdit="UserGd_BeginningEdit">
+                    <DataGrid x:Name="UserGd" Grid.Row="1" BeginningEdit="UserGd_BeginningEdit" >
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding UserID}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>

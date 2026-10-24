@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BookShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BookShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BookGenres">
           <Key>
             <PropertyRef Name="BookID" />
@@ -22,10 +22,7 @@
           <Property Name="Author" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="CoverPath" Type="nvarchar" MaxLength="500" />
-          <Property Name="Content" Type="nvarchar(max)" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IsFree" Type="bit" Nullable="false" />
-          <Property Name="IsFrozen" Type="bit" Nullable="false" />
           <Property Name="CreatedAt" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="CartItems">
@@ -357,8 +354,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -371,10 +367,7 @@
           <Property Name="Author" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CoverPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IsFree" Type="Boolean" Nullable="false" />
-          <Property Name="IsFrozen" Type="Boolean" Nullable="false" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CartItems" Relationship="Self.FK_CartItems_Book" FromRole="Books" ToRole="CartItems" />
           <NavigationProperty Name="Complaints" Relationship="Self.FK_Complaints_Book" FromRole="Books" ToRole="Complaints" />
@@ -721,10 +714,7 @@
                 <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CoverPath" ColumnName="CoverPath" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
-                <ScalarProperty Name="IsFrozen" ColumnName="IsFrozen" />
                 <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
               </MappingFragment>
             </EntityTypeMapping>

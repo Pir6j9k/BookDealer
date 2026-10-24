@@ -9,7 +9,9 @@
       Title="Карточка книги">
 
     <Grid>
-        <StackPanel Margin="20">
+        <TextBlock Text="У программиста лапки.😿" Style="{DynamicResource Title1Text}" TextAlignment="Center" HorizontalAlignment="Center"/>
+
+        <!--<StackPanel Margin="20">
 
             <Grid Margin="15">
                 <Grid.ColumnDefinitions>
@@ -109,6 +111,6 @@
 
             </ItemsControl>
 
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>

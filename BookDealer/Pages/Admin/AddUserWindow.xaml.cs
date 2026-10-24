@@ -114,6 +114,10 @@ namespace BookDealer.Pages.Admin
         {
             DialogResult = false;
         }
+        private void ThemeChangeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.SwitchTheme();
+        }
 
     }
 }

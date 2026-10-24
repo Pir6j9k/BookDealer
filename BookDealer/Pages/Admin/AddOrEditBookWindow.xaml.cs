@@ -76,7 +76,6 @@ namespace BookDealer.Pages.Admin
                 book.Title = title;
                 book.Author = author;
                 book.Price = price;
-                book.IsFree = false;
 
                 book.Genres.Clear();
                 foreach (Genre g in GenresLb.SelectedItems)

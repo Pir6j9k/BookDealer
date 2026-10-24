@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         xmlns:local="clr-namespace:BookDealer"
-        mc:Ignorable="d"
+        mc:Ignorable="d" Closing="Window_Closing"
         Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="1000">
     <Grid>
@@ -29,8 +29,8 @@
                         <TextBlock Text="Dealer" Style="{DynamicResource Title1Text}" />
                     </StackPanel>
                     <TextBlock x:Name="PageTitleText" Style="{DynamicResource TitleText}" Visibility="Collapsed"/>
-                    <Border  Style="{DynamicResource Border}">
-                        <TextBox  ToolTip="Поиск"  />
+                    <Border x:Name="SearchBorder" Style="{DynamicResource Border}">
+                        <TextBox x:Name="SearchTb" ToolTip="Поиск" TextChanged="SearchTb_TextChanged"   />
                     </Border>
                 </StackPanel>
 
@@ -39,6 +39,7 @@
                     <Button x:Name="FavBtn" Content="❤︎" ToolTip="Избранное" Style="{DynamicResource Button5}" Click="FavBtn_Click"/>
                     <Button x:Name="CartBtn" Content="🛒" ToolTip="Корзина" Style="{DynamicResource Button5}" Click="CartBtn_Click"/>
                     <Button x:Name="ProfileBtn" Content="👤" ToolTip="Профиль" Style="{DynamicResource Button5}" Click="ProfileBtn_Click"/>
+                    <Button x:Name="ExitBtn" Content="⍈" ToolTip="Выход" Style="{DynamicResource Button5}" Click="ExitBtn_Click"/>
                     <Button x:Name="ThemeChangeBtn" Content="☯︎" ToolTip="Смена темы" Style="{DynamicResource Button6}" Click="ThemeChangeBtn_Click" />
                 </StackPanel>
             </Grid>

@@ -15,7 +15,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Заголовок и поиск -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -24,7 +23,6 @@
             </Grid.ColumnDefinitions>
         </Grid>
 
-        <!-- Фильтры и карточки -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -38,7 +36,7 @@
                     <ItemsControl x:Name="GenresList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox Content="{Binding GenreName}"/>
+                                <CheckBox Content="{Binding GenreName}" Tag="{Binding}" Click="GenreCheckBox_Click"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -60,12 +58,16 @@
                         <ComboBoxItem Content="Дешевле"/>
                         <ComboBoxItem Content="Дороже"/>
                     </ComboBox>
-                    <Button Grid.Column="2" Content="Поиск" Click="SearchButton_Click"/>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+
+                        <Button x:Name="ResetFilterBtn" ToolTip="Сбросить фильтр почту" Content="Сброс" Style="{DynamicResource Button2}" Click="ResetFilterBtn_Click"/>
+                        <Button x:Name="SearchButton" ToolTip="Фильтра поиска" Content="Поиск" Click="SearchButton_Click"/>
+                    </StackPanel>
 
                 </StackPanel>
             </Border>
 
-            <ListBox x:Name="BookLb" Grid.Column="1" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListBox x:Name="BookLb" Grid.Column="1" ToolTip="Перейти на карточку книги" Grid.ColumnSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="BookLb_SelectionChanged">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
@@ -80,8 +82,8 @@
                                 <TextBlock Text="{Binding Title}"/>
                                 <TextBlock Text="{Binding Author}" Style="{DynamicResource Side3Text}"/>
                                 <DockPanel>
-                                    <Button DockPanel.Dock="Right" Content="В корзину" Tag="{Binding}" Click="AddToCart_Click"/>
-                                    <Button DockPanel.Dock="Right" Content="❤︎" Style="{DynamicResource Button5}" Tag="{Binding}" Click="Wishlist_Click"/>
+                                    <Button DockPanel.Dock="Right" ToolTip="Добавить книгу в корзину" Content="В корзину" Tag="{Binding}" Click="AddToCart_Click"/>
+                                    <Button DockPanel.Dock="Right" ToolTip="Добавить книгу в избранное" Content="❤︎" Style="{DynamicResource Button5}" Tag="{Binding}" Click="Wishlist_Click"/>
                                     <TextBlock Text="{Binding Price, StringFormat={}{0:N0} ₽}" Style="{DynamicResource Side1Text}" VerticalAlignment="Center"/>
                                 </DockPanel>
                             </StackPanel>
@@ -89,36 +91,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-                      
-            <!--<ScrollViewer Grid.Column="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Visible">
-                <ItemsControl x:Name="BooksList">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Style="{DynamicResource Border}" Width="400" Padding="8">
-                                <StackPanel>
-                                    <Border Height="260" CornerRadius="7" Background="#140A0A" ClipToBounds="True">
-                                        <Image Source="{Binding CoverPath}" Stretch="UniformToFill"/>
-                                    </Border>
-
-                                    <TextBlock Text="{Binding Title}" FontSize="20"/>
-                                    <TextBlock Text="{Binding Author}" Style="{DynamicResource Side3Text}" />
-
-                                    <DockPanel>
-                                        <Button DockPanel.Dock="Right" Content="В корзину" Tag="{Binding}" Click="AddToCart_Click"/>
-                                        <Button DockPanel.Dock="Right" Content="❤︎" Style="{DynamicResource Button5}" Tag="{Binding}" Click="Wishlist_Click"/>
-                                        <TextBlock Text="{Binding Price, StringFormat={}{0:N0} ₽}" Style="{DynamicResource Side1Text}"/>
-                                    </DockPanel>
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>-->
         </Grid>
     </Grid>
 </Page>

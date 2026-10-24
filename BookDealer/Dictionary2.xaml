@@ -37,7 +37,7 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontFamily" Value="{DynamicResource OS}"/>
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="Foreground" Value="#7388BB"/>
+        <Setter Property="Foreground" Value="#AEBCDD"/>
         <Setter Property="Margin" Value="15,5"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
@@ -58,7 +58,7 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontFamily" Value="{DynamicResource OS}"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="Foreground" Value="#7388BB"/>
+        <Setter Property="Foreground" Value="#AEBCDD"/>
         <Setter Property="Margin" Value="5"/>
     </Style>
 
@@ -69,7 +69,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="#7388BB"/>
+        <Setter Property="Foreground" Value="#AEBCDD"/>
     </Style>
 
 
@@ -108,7 +108,7 @@
         <Setter Property="Padding" Value="5"/>
         <Setter Property="Width" Value="500"/>
         <Setter Property="CornerRadius" Value="7"/>
-        <Setter Property="BorderBrush" Value="#7388BB"/>
+        <Setter Property="BorderBrush" Value="#AEBCDD"/>
         <Setter Property="BorderThickness" Value="0.5"/>
     </Style>
 
@@ -224,11 +224,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="btnBorder" 
-                        Background="{TemplateBinding Background}" 
-                        BorderBrush="#233E76"
-                        BorderThickness="1"
-                        CornerRadius="7"
-                        Padding="10, 5">
+                            Background="{TemplateBinding Background}" 
+                            BorderBrush="#233E76"
+                            BorderThickness="1"
+                            CornerRadius="7"
+                            Padding="10, 5">
                         <TextBlock x:Name="Text" 
                                Text="{TemplateBinding Content}"
                                Foreground="{TemplateBinding Foreground}"
@@ -300,7 +300,7 @@
     <Style TargetType="PasswordBox">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Foreground" Value="#7388BB"/>
+        <Setter Property="Foreground" Value="#AEBCDD"/>
     </Style>
 
     <!--Hyperlink-->
@@ -422,7 +422,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
                     <Border Background="{TemplateBinding Background}"
-                            BorderBrush="#7388BB"
+                            BorderBrush="#AEBCDD"
                             BorderThickness="0.5"
                             CornerRadius="7">
                         <TextBlock Text="{TemplateBinding Text}"
@@ -443,7 +443,7 @@
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
                                Margin="0"
-                               Foreground="#7388BB"                             
+                               Foreground="#AEBCDD"                             
                                VerticalAlignment="Center"/>
                 </DataTemplate>
             </Setter.Value>
@@ -452,13 +452,13 @@
 
     <Style TargetType="ComboBox">
         <Setter Property="Background" Value="#F7F3F2"/>
-        <Setter Property="Foreground" Value="#7388BB"/>
+        <Setter Property="Foreground" Value="#AEBCDD"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid Margin="10">
                         <Border Background="{TemplateBinding Background}"
-                            BorderBrush="#7388BB"
+                            BorderBrush="#AEBCDD"
                             BorderThickness="0.5"
                             CornerRadius="7"
                             Padding="5">
@@ -485,7 +485,7 @@
                                Focusable="False"
                                PopupAnimation="Slide">
                             <Border Background="#F7F3F2"
-                                    BorderBrush="#7388BB"
+                                    BorderBrush="#AEBCDD"
                                     BorderThickness="0.5"
                                     CornerRadius="7"
                                     MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
@@ -502,7 +502,7 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="ComboBoxItem">
-                    <Setter Property="Foreground" Value="#7388BB"/>
+                    <Setter Property="Foreground" Value="#AEBCDD"/>
                 </Style>
             </Setter.Value>
         </Setter>
@@ -520,12 +520,64 @@
                             <ControlTemplate TargetType="ListBoxItem">
                                 <Border x:Name="Bd"
                                         CornerRadius="7"
+                                        Margin="10"
+                                        Padding="5"
+                                        Width="270"
                                         Background="Transparent">
                                     <ContentPresenter/>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="Bd" Property="Background" Value="#5878BB"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBox">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="#AEBCDD"
+                            BorderThickness="0.5"
+                            CornerRadius="7"
+                            Padding="5">
+                        <ScrollViewer Focusable="False"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      VerticalScrollBarVisibility="Auto">
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="GenreList" TargetType="ListBox">
+        <Setter Property="Background" Value="#F7F3F2"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Height" Value="200"/>
+        <Setter Property="SelectionMode" Value="Multiple"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border x:Name="Bd"
+                                        CornerRadius="7"
+                                        Margin="5"
+                                        Padding="5"
+                                        Background="Transparent">
+                                    <ContentPresenter/>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="#AEBCDD"/>
+                                        <Setter Property="Cursor" Value="Hand"/>
                                     </Trigger>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="Bd" Property="Background" Value="#233E76"/>
@@ -541,11 +593,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListBox">
                     <Border Background="{TemplateBinding Background}"
-                            BorderBrush="#7388BB"
+                            BorderBrush="#AEBCDD"
                             BorderThickness="0.5"
                             CornerRadius="7"
                             Padding="5">
-                        <ScrollViewer Focusable="False">
+                        <ScrollViewer Focusable="False"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Hidden">
                             <ItemsPresenter/>
                         </ScrollViewer>
                     </Border>

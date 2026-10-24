@@ -1,0 +1,57 @@
+﻿<Page x:Class="BookDealer.AuthPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookDealer"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="450"
+      Title="AuthPage">
+
+    <Grid Background="#F7F3F2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel  Grid.Row="0" Style="{StaticResource Center}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Book" Style="{StaticResource TitleText}"/>
+                <TextBlock Text="Dealer" Style="{StaticResource Title1Text}" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Логин" Style="{StaticResource SideText}"/>
+            <Border Style="{StaticResource Border}">
+                <TextBox Text="Введите логин" TextChanged="TextBox_TextChanged" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="2" >
+            <TextBlock Text="Пароль" Style="{StaticResource SideText}" />
+            <Border Style="{StaticResource Border}">
+                <PasswordBox Password="vvfffff" />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal"  Style="{StaticResource Center}">
+            <Border Style="{StaticResource Button2Border}">
+                <Button Content="Гость" Style="{StaticResource Button2}" Click="Button_Click"/>
+            </Border>
+            <Border Style="{StaticResource ButtonBorder}">
+                <Button Content="Войти" Click="Button_Click"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Style="{StaticResource Center}">
+            <TextBlock>
+                Нет аккаунта?
+                <Hyperlink NavigateUri="RegisterPage.xaml" Cursor="Hand">Зарегистрироваться</Hyperlink>
+            </TextBlock>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

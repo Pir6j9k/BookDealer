@@ -1,0 +1,51 @@
+﻿<Window x:Class="BookDealer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:charts="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        xmlns:local="clr-namespace:BookDealer"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Stretch">
+                    <Button x:Name="BackBtn" Content="←" Style="{DynamicResource Button6}" Click="BackBtn_Click"/>
+                    <StackPanel x:Name="LogoPanel" Orientation="Horizontal">
+                        <TextBlock Text="Book" Style="{DynamicResource TitleText}"/>
+                        <TextBlock Text="Dealer" Style="{DynamicResource Title1Text}" />
+                    </StackPanel>
+                    <TextBlock x:Name="PageTitleText" Style="{DynamicResource TitleText}" Visibility="Collapsed"/>
+                    <Border  Style="{DynamicResource Border}">
+                        <TextBox  ToolTip="Поиск"  />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+                    <Button x:Name="FavBtn" Content="❤︎" ToolTip="Избранное" Style="{DynamicResource Button5}" Click="FavBtn_Click"/>
+                    <Button x:Name="CartBtn" Content="🛒" ToolTip="Корзина" Style="{DynamicResource Button5}" Click="CartBtn_Click"/>
+                    <Button x:Name="ProfileBtn" Content="👤" ToolTip="Профиль" Style="{DynamicResource Button5}" Click="ProfileBtn_Click"/>
+                    <Button x:Name="ThemeChangeBtn" Content="☯︎" ToolTip="Смена темы" Style="{DynamicResource Button6}" Click="ThemeChangeBtn_Click" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" />
+        <TextBlock x:Name="DateTimeNow" Grid.Row="2" Style="{DynamicResource CenterText}"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,40 @@
+﻿<Window x:Class="BookDealer.Pages.Admin.AddOrEditBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookDealer.Pages.Admin"
+        mc:Ignorable="d" Style="{DynamicResource {x:Type Window}}"
+        Title="AddOrEditBookWindow" Height="750" Width="500">
+
+    <StackPanel Style="{DynamicResource Center}">
+        <StackPanel Style="{DynamicResource Center}" Orientation="Horizontal" >
+            <TextBlock Text="Редакция" Style="{DynamicResource TitleText}"/>
+            <TextBlock Text="книги" Style="{DynamicResource Title1Text}"/>
+        </StackPanel>
+        
+        <TextBlock Text="Название" Style="{DynamicResource SideText}"/>
+        <Border Style="{DynamicResource Border}">
+            <TextBox x:Name="TitleTb"/>
+        </Border>
+
+        <TextBlock Text="Автор" Style="{DynamicResource SideText}"/>
+        <Border Style="{DynamicResource Border}">
+            <TextBox x:Name="AuthorTb" />
+        </Border>
+
+        <TextBlock Text="Цена, ₽" Style="{DynamicResource SideText}"/>
+        <Border Style="{DynamicResource Border}">
+            <TextBox x:Name="PriceTb" />
+        </Border>
+
+        <TextBlock Text="Жанры" Style="{DynamicResource SideText}"/>
+        <ListBox x:Name="GenresLb" SelectionMode="Multiple" DisplayMemberPath="GenreName" Height="200" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+
+        <StackPanel Orientation="Horizontal" Style="{DynamicResource Center}">
+            <Button Content="Отмена" Style="{DynamicResource Button4}" Click="CancelBtn_Click"/>
+            <Button Content="Сохранить"  Click="SaveBtn_Click"/>
+        </StackPanel>
+        <Button x:Name="ThemeChangeBtn" Content="☯︎" ToolTip="Смена темы" Style="{DynamicResource Button6}" Click="ThemeChangeBtn_Click" />
+    </StackPanel>
+</Window>

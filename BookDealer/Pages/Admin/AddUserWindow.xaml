@@ -1,0 +1,53 @@
+﻿<Window x:Class="BookDealer.Pages.Admin.AddUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookDealer.Pages.Admin"
+        mc:Ignorable="d" Style="{DynamicResource {x:Type Window}}"
+        Title="AddUserWindow" Height="550" Width="550">
+    
+    <StackPanel Style="{DynamicResource Center}">
+        <StackPanel Style="{DynamicResource Center}" Orientation="Horizontal">
+            
+            <TextBlock Text="Добавить" Style="{DynamicResource TitleText}"/>
+            <TextBlock Text=" пользователя" Style="{DynamicResource Title1Text}"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="Логин" Style="{DynamicResource SideText}"/>
+            <Border Style="{DynamicResource Border}">
+                <TextBox x:Name="LoginTb" />
+            </Border>
+
+            <TextBlock Text="Пароль" Style="{DynamicResource SideText}"/>
+            <Border Style="{DynamicResource Border}">
+                <PasswordBox x:Name="PasswordPb"/>
+            </Border>
+
+            <TextBlock Text="Имя" Style="{DynamicResource SideText}"/>
+            <Border Style="{DynamicResource Border}">
+
+                <TextBox x:Name="DisplayNameTb" />
+            </Border>
+            <TextBlock Text="Почта" Style="{DynamicResource SideText}"/>
+            <Border Style="{DynamicResource Border}">
+
+                <TextBox x:Name="EmailTb"/>
+            </Border>
+            <TextBlock Text="Роль" Style="{DynamicResource SideText}"/>
+            <ComboBox x:Name="RoleCb">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RoleName}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Style="{DynamicResource Center}">
+            <Button Content="Отмена" Style="{DynamicResource Button4}" Click="CancelBtn_Click"/>
+            <Button Content="Сохранить" Click="SaveBtn_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

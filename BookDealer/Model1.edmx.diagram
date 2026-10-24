@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3b14d34e7a3425dbaf2120cf121dd62" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="BookShopModel.Book" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.CartItem" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.Complaint" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.Genre" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.Purchase" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.ReadingList" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.Review" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.Role" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookShopModel.User" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="BookShopModel.FK_CartItems_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Complaints_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Purchases_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_ReadingLists_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Reviews_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_CartItems_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Complaints_Review" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Complaints_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Purchases_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_ReadingLists_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Reviews_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="BookShopModel.BookGenres" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

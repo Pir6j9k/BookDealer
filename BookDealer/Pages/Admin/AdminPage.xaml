@@ -1,0 +1,119 @@
+﻿<Page x:Class="BookDealer.Pages.Admin.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+      xmlns:local="clr-namespace:BookDealer.Pages.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Администратор">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="📚 Книги">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Border Style="{DynamicResource Border}">
+                            <TextBox x:Name="BookSearchTb" ToolTip="Поиск" TextChanged="BookSearchTb_TextChanged"/>
+                        </Border>
+                        <Button x:Name="AddBookBtn" Content="+ Добавить" Click="AddBookBtn_Click"/>
+                        <Button x:Name="ChangeBookBtn" Content="🖊 Изменить" Style="{DynamicResource Button3}" Click="ChangeBookBtn_Click"/>
+                        <Button x:Name="DeleteBookBtn" Content="🗑️ Удалить" Style="{DynamicResource Button4}" Click="DeleteBookBtn_Click"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="BooksDg" Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding BookID}"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+                            <DataGridTextColumn Header="Автор" Binding="{Binding Author}"/>
+                            <DataGridTextColumn Header="Цена, ₽" Binding="{Binding Price}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="🧾 Заказы">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Left">
+                        <Border Style="{DynamicResource Border}">
+                            <TextBox x:Name="PurchaseSearchTb" ToolTip="Поиск" TextChanged="PurchaseSearchTb_TextChanged" />
+                        </Border>
+                    </StackPanel>
+                    <DataGrid x:Name="PurchaseDg" Grid.Row="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding PurchaseID}"/>
+                            <DataGridTextColumn Header="Покупатель" Binding="{Binding User.DisplayName}"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding PurchasedAt}"/>
+                            <DataGridTextColumn Header="Сумма, ₽" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding PaymentStatus}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="👥 Пользователи">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Border Style="{DynamicResource Border}">
+                            <TextBox x:Name="UserSearchTb" ToolTip="Поиск" TextChanged="UserSearchTb_TextChanged"/>
+                        </Border>
+                        <Button x:Name="AddUserBtn" Content="+ Добавить" Click="AddUserBtn_Click"/>
+                        <Button x:Name="ChangeUserBtn" Content="🖊 Изменить" Style="{DynamicResource Button3}" Click="ChangeUserBtn_Click"/>
+                        <Button x:Name="DeleteUserBtn" Content="🗑️ Удалить" Style="{DynamicResource Button4}" Click="DeleteUserBtn_Click"/>
+                    </StackPanel>
+                    <DataGrid x:Name="UserGd" Grid.Row="1" BeginningEdit="UserGd_BeginningEdit">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding UserID}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding DisplayName}"/>
+                            <DataGridTextColumn Header="Почта" Binding="{Binding Email}"/>
+                            <DataGridComboBoxColumn x:Name="RoleColumn" Header="Роль" SelectedItemBinding="{Binding Role}" DisplayMemberPath="RoleName"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="📑Отчеты">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Style="{DynamicResource Center}">
+                        <TextBlock Text="Пользователь:"/>
+                        <ComboBox x:Name="PaymentsUserComboBox" Width="250" DisplayMemberPath="DisplayName" SelectionChanged="PaymentsUserComboBox_SelectionChanged"/>
+
+                        <TextBlock Text="Диаграмма:"/>
+                        <ComboBox x:Name="PaymentsChartTypeComboBox" Width="250" SelectedIndex="0" SelectionChanged="PaymentsChartTypeComboBox_SelectionChanged">
+                            <ComboBoxItem Content="Столбцы" Tag="Column"/>
+                            <ComboBoxItem Content="Горизонтальные столбцы" Tag="Bar"/>
+                            <ComboBoxItem Content="Линия" Tag="Line"/>
+                            <ComboBoxItem Content="Круговая" Tag="Pie"/>
+                            <ComboBoxItem Content="Кольцевая" Tag="Doughnut"/>
+                            <ComboBoxItem Content="Область" Tag="Area"/>
+                        </ComboBox>
+
+                        <Button Content="Экспорт в Excel" Click="PaymentsExportExcel_Click"/>
+                        <Button Content="Экспорт в Word" Style="{DynamicResource Button2}" Click="PaymentsExportWord_Click"/>
+                    </StackPanel>
+                    
+                    <wfi:WindowsFormsHost x:Name="PaymentsChartHost" Grid.Row="1" Margin="10"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

@@ -26,13 +26,6 @@ namespace BookDealer.Pages.Auth
         {
             InitializeComponent();
         }
-        public static string GetHash(String pass)
-        {
-            using (var hash = SHA256.Create())
-            {
-                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(pass)).Select(x => x.ToString("X2")));
-            }
-        }
 
         private void OpenMainWindow()
         {
@@ -61,7 +54,7 @@ namespace BookDealer.Pages.Auth
                     MessageBox.Show("Заполните все поля!");
                     return;
                 }
-                string hashedPass = GetHash(PassPb.Password);
+                string hashedPass = PasswordHelper.Hash(PassPb.Password);
                 User user = Core.DB.Users.FirstOrDefault(x => x.Login == LoginTbx.Text && x.PasswordHash == hashedPass);
                 if (user == null)
                 {

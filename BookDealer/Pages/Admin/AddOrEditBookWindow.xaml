@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookDealer.Pages.Admin"
         mc:Ignorable="d" Style="{DynamicResource {x:Type Window}}"
-        Title="AddOrEditBookWindow" Height="750" Width="500">
+        Title="Добалвение или редактироанвие книги" Height="750" Width="500">
 
     <StackPanel Style="{DynamicResource Center}">
         <StackPanel Style="{DynamicResource Center}" Orientation="Horizontal" >

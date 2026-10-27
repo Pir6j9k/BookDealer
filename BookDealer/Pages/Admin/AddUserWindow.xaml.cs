@@ -27,13 +27,6 @@ namespace BookDealer.Pages.Admin
             RoleCb.SelectedIndex = 0;
         }
 
-        public string GetHash(String pass)
-        {
-            using (var hash = SHA256.Create())
-            {
-                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(pass)).Select(x => x.ToString("X2")));
-            }
-        }
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             string login = LoginTb.Text.Trim();
@@ -62,44 +55,27 @@ namespace BookDealer.Pages.Admin
 
             try
             {
-                if (password.Length >= 8)
+                string error = PasswordHelper.Validate(password);
+                if(error != null)
                 {
-                    bool en = true;
-                    bool number = false;
-
-                    for (int i = 0; i < password.Length; i++)
-                    {
-                        if (password[i] >= '0' && password[i] <= '9')
-                            number = true;
-                        else if (!((password[i] >= 'A' && password[i] <= 'Z') || (password[i] >= 'a' && password[i] <= 'z'))) en = false;
-                    }
-                    if (!en)
-                    {
-                        MessageBox.Show("Используйте только английскую раскладку!");
-                        return;
-                    }
-                    if (!number)
-                    {
-                        MessageBox.Show("Добавьте хотя бы одну цифру!");
-                        return;
-                    }
-                    User user = new User
-                    {
-                        Login = login,
-                        PasswordHash = GetHash(password),
-                        DisplayName = name,
-                        Email = email,
-                        RoleID = role.RoleID,
-                        IsFrozen = false,
-                        CreatedAt = DateTime.Now
-                    };
-                    Core.DB.Users.Add(user);
-                    Core.DB.SaveChanges();
-                    DialogResult = true;
-
+                    MessageBox.Show(error);
+                    return;
                 }
-                else
-                    MessageBox.Show("Пароль должен быть минимум 8 симвалов!");
+
+                User user = new User
+                {
+                    Login = login,
+                    PasswordHash = PasswordHelper.Hash(password),
+                    DisplayName = name,
+                    Email = email,
+                    RoleID = role.RoleID,
+                    IsFrozen = false,
+                    CreatedAt = DateTime.Now
+                };
+                Core.DB.Users.Add(user);
+                Core.DB.SaveChanges();
+                DialogResult = true;
+
             }
             catch (Exception ex)
             {
